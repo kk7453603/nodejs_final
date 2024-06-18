@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= title %></title>
+  <link rel="stylesheet" type="text/css" href="/css/styles.css">
+</head>
+<body>
+  <%- include('_header') %>
+  <h1>Admin Page</h1>
+  <form action="/admin/add" method="post" enctype="multipart/form-data">
+    <input type="text" name="title" placeholder="Title" required>
+    <textarea name="content" placeholder="Content" required></textarea>
+    <input type="text" name="category" placeholder="Category" required>
+    <input type="file" name="image">
+    <button type="submit">Add News</button>
+  </form>
+  <div>
+    <h2>Edit or Delete News</h2>
+    <% news.forEach(article => { %>
+      <div class="news-card">
+        <form action="/admin/edit" method="post" enctype="multipart/form-data" style="display: inline-block;">
+          <input type="hidden" name="id" value="<%= article.id %>">
+          <input type="text" name="title" value="<%= article.title %>" required>
+          <textarea name="content" required><%= article.content %></textarea>
+          <input type="text" name="category" value="<%= article.category %>" required>
+          <input type="hidden" name="oldImage" value="<%= article.image %>">
+          <input type="file" name="image">
+          <button type="submit">Edit News</button>
+        </form>
+        <form action="/admin/delete" method="post" style="display: inline-block;">
+          <input type="hidden" name="id" value="<%= article.id %>">
+          <input type="hidden" name="image" value="<%= article.image %>">
+          <button type="submit">Delete News</button>
+        </form>
+        <% if (article.image) { %>
+          <img src="<%= article.image %>" alt="<%= article.title %>">
+        <% } %>
+      </div>
+    <% }) %>
+  </div>
+  <script src="/js/main.js"></script>
+</body>
+</html>

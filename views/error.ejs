@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Error</title>
+  <link rel="stylesheet" type="text/css" href="/css/styles.css">
+</head>
+<body>
+  <%- include('_header') %>
+  <h1>Error <%= error.status %></h1>
+  <p><%= error.message %></p>
+  <a href="/">Go to Home</a>
+</body>
+</html>

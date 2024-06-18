@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>News Details</title>
+  <link rel="stylesheet" type="text/css" href="/css/styles.css">
+</head>
+<body>
+  <%- include('_header') %>
+  <h1>News Details</h1>
+  <div class="news-card">
+    <% if (news.image) { %>
+      <img src="<%= news.image %>" alt="<%= news.title %>">
+    <% } %>
+    <h2><%= news.title %></h2>
+    <p><%= news.content %></p>
+    <p>Category: <%= news.category %></p>
+  </div>
+  <h2>Feedback</h2>
+  <form action="/news/<%= news.id %>/feedback" method="post">
+    <textarea name="feedback" placeholder="Leave your feedback" required></textarea>
+    <button type="submit">Submit Feedback</button>
+  </form>
+  <div>
+    <% feedback.forEach(item => { %>
+      <p><%= item.feedback %></p>
+    <% }) %>
+  </div>
+</body>
+</html>

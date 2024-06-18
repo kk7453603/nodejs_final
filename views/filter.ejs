@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= title %></title>
+  <link rel="stylesheet" type="text/css" href="/css/styles.css">
+</head>
+<body>
+  <%- include('_header') %>
+  <h1>Filtered News</h1>
+  <div>
+    <% news.forEach(article => { %>
+      <div class="news-card">
+        <% if (article.image) { %>
+          <img src="<%= article.image %>" alt="<%= article.title %>">
+        <% } %>
+        <h2><a><%= article.title %></a></h2>
+        <p><%= article.content.substring(0, 200) %>...</p>
+      </div>
+    <% }) %>
+  </div>
+</body>
+</html>

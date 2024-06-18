@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Main Page</title>
+  <link rel="stylesheet" type="text/css" href="/css/styles.css">
+  <script src="/js/main.js" defer></script>
+</head>
+<body>
+  <%- include('_header') %>
+  <h1>Main Page</h1>
+
+  <!-- Блок информации о возможностях проекта -->
+  <div id="project-info">
+    <p>Welcome to our news website! Here you can find the latest news articles on various topics. As an administrator, you can add, edit, or delete news articles. Users can browse news articles and leave feedback.</p>
+    <button id="hide-info-btn">Hide Information</button>
+  </div>
+
+  <!-- Блок фильтрации статей -->
+  <div>
+    <input type="text" id="filter-input" placeholder="Filter by category">
+    <button id="filter-btn">Filter</button>
+    <button id="show-all-btn">Show All</button>
+  </div>
+
+  <!-- Блок статей -->
+  <div id="news-articles">
+    <% news.forEach(article => { %>
+      <div class="news-card" data-category="<%= article.category %>">
+        <% if (article.image) { %>
+          <img src="<%= article.image %>" alt="<%= article.title %>">
+        <% } %>
+        <h2><a href="/news/<%= article.id %>"><%= article.title %></a></h2>
+        <p><%= article.content.substring(0, 200) %>...</p>
+        <p>Category: <%= article.category %></p>
+      </div>
+    <% }) %>
+  </div>
+</body>
+</html>
